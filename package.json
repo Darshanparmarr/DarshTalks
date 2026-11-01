@@ -10,16 +10,16 @@
     "generate:quotes": "node scripts/generate-quotes.js"
   },
   "dependencies": {
-    "next": "15.1.6",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "gsap": "3.12.7",
     "framer-motion": "11.18.2",
-    "lucide-react": "0.474.0"
+    "gsap": "3.12.7",
+    "lucide-react": "0.474.0",
+    "next": "15.5.28",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "tailwindcss": "3.4.17",
+    "autoprefixer": "10.4.20",
     "postcss": "8.5.1",
-    "autoprefixer": "10.4.20"
+    "tailwindcss": "3.4.17"
   }
 }
