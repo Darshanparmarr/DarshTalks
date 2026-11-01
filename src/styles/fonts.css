@@ -1,0 +1,59 @@
+/*
+  Optional custom / local fonts for Darshtalks.
+
+  These six families are NOT bundled by default because their license and files
+  are not guaranteed to be available. To enable them:
+    1. Drop the font files into `public/fonts/` using the names referenced below.
+    2. (Optional) adjust format()/weight to match the files you have.
+
+  If a file is missing the browser silently uses the fallback declared in
+  `FONT_STACK` (see src/config/fonts.js), so the build never breaks.
+*/
+
+@font-face {
+  font-family: "Sugra";
+  src: url("/fonts/Sugra.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quinia";
+  src: url("/fonts/Quinia.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ritteru";
+  src: url("/fonts/Ritteru.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jubble";
+  src: url("/fonts/Jubble.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Etrixo";
+  src: url("/fonts/Etrixo.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lancelot";
+  src: url("/fonts/Lancelot.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

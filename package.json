@@ -1,0 +1,25 @@
+{
+  "name": "darshtalks",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate:quotes": "node scripts/generate-quotes.js"
+  },
+  "dependencies": {
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "gsap": "3.12.7",
+    "framer-motion": "11.18.2",
+    "lucide-react": "0.474.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17",
+    "postcss": "8.5.1",
+    "autoprefixer": "10.4.20"
+  }
+}

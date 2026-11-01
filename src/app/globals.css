@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "../styles/fonts.css";
+
+:root {
+  --bg: #09090b;
+  --bg-soft: #111114;
+  --ink: #ffffff;
+  --ink-muted: #a1a1aa;
+  --accent: #a855f7;
+  --masonry-gap: 20px;
+  --masonry-row: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Thin, premium scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #26262b;
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a42;
+}
+
+/* ------------------------------------------------------------------ */
+/* Masonry grid (CSS Grid + measured row spans for true portrait flow) */
+/* ------------------------------------------------------------------ */
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
+  grid-auto-rows: var(--masonry-row);
+  grid-auto-flow: row dense;
+  gap: var(--masonry-gap);
+}
+
+@media (min-width: 640px) {
+  .masonry {
+    --cols: 3;
+  }
+}
+@media (min-width: 1024px) {
+  .masonry {
+    --cols: 4;
+  }
+}
+
+/* A grid item spans one column by default. "Wide" cards span two columns,
+   but only once there are enough columns (desktop) so they never force a
+   full-width, over-tall card on small screens. */
+.masonry-item {
+  grid-column: span 1;
+  min-width: 0;
+}
+@media (min-width: 1024px) {
+  .masonry-item.col-wide {
+    grid-column: span 2;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Quote card text: responsive font-size via template CSS vars        */
+/* ------------------------------------------------------------------ */
+.quote-text {
+  font-size: var(--fs-m, 1.4rem);
+  /* Never split a word across lines; the font auto-fits the card width in JS
+     (see QuoteCard) so long words shrink instead of breaking or hyphenating. */
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+@media (min-width: 768px) {
+  .quote-text {
+    font-size: var(--fs, 2rem);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* CSS-only decorative accents (no images anywhere)                   */
+/* ------------------------------------------------------------------ */
+.deco { position: relative; }
+
+.deco-corner-dot::after {
+  content: "";
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.deco-underline .quote-text::after {
+  content: "";
+  display: block;
+  width: 2.4rem;
+  height: 4px;
+  margin-top: 0.9rem;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.deco-bar-left { padding-left: 1.6rem; }
+.deco-bar-left::before {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 1.4rem;
+  bottom: 1.4rem;
+  width: 5px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.deco-quote-mark::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.2rem;
+  left: 0.9rem;
+  font-size: 4rem;
+  line-height: 1;
+  opacity: 0.22;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.deco-big-quote::before {
+  content: "\201C";
+  display: block;
+  font-size: 3.4rem;
+  line-height: 0.6;
+  margin-bottom: 0.4rem;
+  opacity: 0.4;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.deco-dots-grid::after {
+  content: "";
+  position: absolute;
+  bottom: 1.1rem;
+  right: 1.1rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  opacity: 0.4;
+  background-image: radial-gradient(currentColor 1.4px, transparent 1.4px);
+  background-size: 8px 8px;
+}
+
+.deco-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0.7rem;
+  border: 2px solid currentColor;
+  border-radius: inherit;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.deco-ring::after {
+  content: "";
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 3px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.deco-slash::before {
+  content: "";
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.6rem;
+  width: 2.8rem;
+  height: 4px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-20deg);
+  opacity: 0.55;
+}
+
+.deco-double-line .quote-text::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 0;
+  margin-top: 0.9rem;
+  border-top: 3px double currentColor;
+  opacity: 0.6;
+}
+
+/* ------------------------------------------------------------------ */
+/* Utility: hide-scrollbar for horizontal filter row                  */
+/* ------------------------------------------------------------------ */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion                                                     */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
