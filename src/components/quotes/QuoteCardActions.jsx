@@ -72,11 +72,14 @@ export default function QuoteCardActions({ quote, template, cardRef }) {
     }
   };
 
+  // Icon-only on small cards (mobile/tablet) so the buttons always fit the
+  // narrow card width; labels return on large screens. flex-wrap is a final
+  // safety net so the actions can never overflow the card edge.
   const btn =
-    "inline-flex items-center gap-1.5 rounded-full bg-black/10 px-3 py-1.5 text-xs font-semibold backdrop-blur-sm transition-opacity duration-300 opacity-70 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-current disabled:opacity-50";
+    "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-black/10 px-3 py-2 text-xs font-semibold backdrop-blur-sm transition-opacity duration-300 opacity-70 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-current disabled:opacity-50";
 
   return (
-    <div className="mt-auto flex items-center gap-1.5 pt-4">
+    <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
       <button
         type="button"
         onClick={handleShare}
@@ -91,7 +94,7 @@ export default function QuoteCardActions({ quote, template, cardRef }) {
         ) : (
           <Share2 size={14} />
         )}
-        <span>Share</span>
+        <span className="hidden xl:inline">Share</span>
       </button>
 
       <button
@@ -108,7 +111,7 @@ export default function QuoteCardActions({ quote, template, cardRef }) {
         ) : (
           <Download size={14} />
         )}
-        <span>Download</span>
+        <span className="hidden xl:inline">Download</span>
       </button>
     </div>
   );
