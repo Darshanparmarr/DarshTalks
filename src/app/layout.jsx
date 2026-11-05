@@ -1,8 +1,11 @@
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { fontVariables } from "@/config/fonts";
 import { site, SITE_URL } from "@/config/site";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -99,6 +102,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
       </body>
+      {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
     </html>
   );
 }
